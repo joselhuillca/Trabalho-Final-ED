@@ -2,7 +2,7 @@
 
 myheap::myheap()
 {
-    lista = new Atendimiento[MAX_SIZE_HEAP];
+    lista = new Atendimiento[MAX_SIZE_HEAP]();
     size = 0;
 }
 

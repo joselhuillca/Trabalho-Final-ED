@@ -1,6 +1,9 @@
 #ifndef ASUNTO_H
 #define ASUNTO_H
 
+#include <iostream>
+using namespace std;
+
 class TipoAsunto
 {
 private:
@@ -8,6 +11,8 @@ private:
     string title;
     int urgency;
 public:
+    TipoAsunto(){}
+
     TipoAsunto(int type_, string title_, int urgency_) {
         type = type_;
         title = title_;

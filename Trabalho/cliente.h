@@ -1,6 +1,9 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
+#include <iostream>
+using namespace std;
+
 class Cliente
 {
 private:
@@ -8,6 +11,7 @@ private:
     string name;
     int age;
 public:
+    Cliente(){}
     Cliente(int cpf_, string name_, int age_) {
         cpf = cpf_;
         name = name_;

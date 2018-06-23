@@ -1,7 +1,8 @@
 #ifndef MYLIST_H
 #define MYLIST_H
 
-class list{
+
+class myList{
   private:
     struct node{
       int cont;
@@ -13,14 +14,14 @@ class list{
     };
     node *p_start;
     node *p_insert;
-    node *p_remove;
     int size;
 
   public:
-    list(){p_start=NULL;size=0;}
-    void insert(int);
-    void remove_(int);
-    void print();
+    myList(){p_start=0;p_insert=0;size=0;}
+    void myInsert(int dato);
+    void remove_(int dato);
+    void myprint();
 };
+
 
 #endif
