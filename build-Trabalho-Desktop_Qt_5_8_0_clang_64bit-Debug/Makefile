@@ -50,14 +50,10 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Trabalho/main.cpp \
 		../Trabalho/servicioatendimiento.cpp \
-		../Trabalho/Estructuras/myheap.cpp \
-		../Trabalho/Estructuras/mylist.cpp \
-		../Trabalho/Estructuras/mylistenc.cpp 
+		../Trabalho/Estructuras/myheap.cpp 
 OBJECTS       = main.o \
 		servicioatendimiento.o \
-		myheap.o \
-		mylist.o \
-		mylistenc.o
+		myheap.o
 DIST          = ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/device_config.prf \
@@ -207,6 +203,7 @@ DIST          = ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_post.prf \
+		../Trabalho/.qmake.stash \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/toolchain.prf \
@@ -236,12 +233,9 @@ DIST          = ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		../Trabalho/cliente.h \
 		../Trabalho/servicioatendimiento.h \
 		../Trabalho/Estructuras/myheap.h \
-		../Trabalho/Estructuras/mylist.h \
-		../Trabalho/Estructuras/mylistenc.h ../Trabalho/main.cpp \
+		../Trabalho/Estructuras/mylist.h ../Trabalho/main.cpp \
 		../Trabalho/servicioatendimiento.cpp \
-		../Trabalho/Estructuras/myheap.cpp \
-		../Trabalho/Estructuras/mylist.cpp \
-		../Trabalho/Estructuras/mylistenc.cpp
+		../Trabalho/Estructuras/myheap.cpp
 QMAKE_TARGET  = Trabalho
 DESTDIR       = 
 TARGET        = Trabalho
@@ -402,6 +396,7 @@ Makefile: ../Trabalho/Trabalho.pro ../../../../Qt5.8.0/5.8/clang_64/mkspecs/macx
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/toolchain.prf \
@@ -578,6 +573,7 @@ Makefile: ../Trabalho/Trabalho.pro ../../../../Qt5.8.0/5.8/clang_64/mkspecs/macx
 ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt5.8.0/5.8/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/toolchain.prf:
@@ -619,8 +615,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Trabalho/atendimiento.h ../Trabalho/asunto.h ../Trabalho/cliente.h ../Trabalho/servicioatendimiento.h ../Trabalho/Estructuras/myheap.h ../Trabalho/Estructuras/mylist.h ../Trabalho/Estructuras/mylistenc.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Trabalho/main.cpp ../Trabalho/servicioatendimiento.cpp ../Trabalho/Estructuras/myheap.cpp ../Trabalho/Estructuras/mylist.cpp ../Trabalho/Estructuras/mylistenc.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Trabalho/atendimiento.h ../Trabalho/asunto.h ../Trabalho/cliente.h ../Trabalho/servicioatendimiento.h ../Trabalho/Estructuras/myheap.h ../Trabalho/Estructuras/mylist.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Trabalho/main.cpp ../Trabalho/servicioatendimiento.cpp ../Trabalho/Estructuras/myheap.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -630,6 +626,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -667,7 +664,7 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-main.o: ../Trabalho/main.cpp 
+main.o: ../Trabalho/main.cpp ../Trabalho/Estructuras/mylist.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Trabalho/main.cpp
 
 servicioatendimiento.o: ../Trabalho/servicioatendimiento.cpp ../Trabalho/servicioatendimiento.h
@@ -678,12 +675,6 @@ myheap.o: ../Trabalho/Estructuras/myheap.cpp ../Trabalho/Estructuras/myheap.h \
 		../Trabalho/cliente.h \
 		../Trabalho/asunto.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o myheap.o ../Trabalho/Estructuras/myheap.cpp
-
-mylist.o: ../Trabalho/Estructuras/mylist.cpp ../Trabalho/Estructuras/mylist.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mylist.o ../Trabalho/Estructuras/mylist.cpp
-
-mylistenc.o: ../Trabalho/Estructuras/mylistenc.cpp ../Trabalho/Estructuras/mylistenc.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mylistenc.o ../Trabalho/Estructuras/mylistenc.cpp
 
 ####### Install
 

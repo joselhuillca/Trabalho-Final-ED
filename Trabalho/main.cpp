@@ -1,12 +1,12 @@
 #include <iostream>
-#include "Estructuras/mylistenc.h"
+#include "Estructuras/mylist.h"
 
 using namespace std;
 
 int main()
 {
-    myListEnc a;
-    a.insert(4);
+    myList<int> a;
+    a.myprint();
     cout<<"Hello World"<<endl;
     return 0;
 }

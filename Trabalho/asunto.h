@@ -37,6 +37,7 @@ private:
     float *providence;
     double durationAttention;
 public:
+    Asunto(){}
     Asunto(TipoAsunto type_, string description_, float *prov=0, double durationA=0) {
         type = type_;
         description = description_;

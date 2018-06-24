@@ -11,9 +11,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     servicioatendimiento.cpp \
-    Estructuras/myheap.cpp \
-    Estructuras/mylist.cpp \
-    Estructuras/mylistenc.cpp
+    Estructuras/myheap.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -32,5 +30,4 @@ HEADERS += \
     cliente.h \
     servicioatendimiento.h \
     Estructuras/myheap.h \
-    Estructuras/mylist.h \
-    Estructuras/mylistenc.h
+    Estructuras/mylist.h
