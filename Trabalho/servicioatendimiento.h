@@ -7,15 +7,18 @@
 #include <stdlib.h>
 #include <time.h>
 #include <sstream>
-#include <iostream>
-using namespace std;
+#include <string>
+// #include <iostream>
+// using namespace std;
 
 #define MAX_SIZE_LIST 20
 #define GRAU_URGENCIA 10
 
-class servicioAtendimiento
+class servicioAtendimento
 {
   private:
+    int urgenciaRand;
+    int tipoAssuntoRand;
     TipoAssunto *listaTipoAssunto;
     MyList<Atendimento> listaEncerrar;
     MyHeap heapAtendimento;
@@ -23,11 +26,11 @@ class servicioAtendimiento
   public:
     MyList<Assunto> listaAsunto;
 
-    servicioAtendimiento();
+    servicioAtendimento();
     void imprimirListaTipoAtendimento();
-    //myheap recepcionar(Atendimiento);
-
+    void recepcionar(Cliente, MyList<Assunto>);
     void encerrar();
+    MyList<Assunto> gerarListaAssunto(int);
 };
 
 #endif // SERVICIOATENDIMIENTO_H

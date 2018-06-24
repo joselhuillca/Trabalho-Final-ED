@@ -1,31 +1,31 @@
 #include "servicioatendimiento.h"
 
-servicioAtendimiento::servicioAtendimiento()
+servicioAtendimento::servicioAtendimento()
 {
   // Random
-  int urgenciaRand;
   srand (time(NULL));
-  urgenciaRand = rand() % GRAU_URGENCIA + 1;
 
-  // Create list
+  // Create list listaTipoAssunto
   listaTipoAssunto = new TipoAssunto[MAX_SIZE_LIST];
   for(int i=0; i<MAX_SIZE_LIST; i++){
     ostringstream str1;
     str1<<i+1;
+    urgenciaRand = rand() % GRAU_URGENCIA + 1;
     TipoAssunto tipoAsuntoTemporal(i+1, "Asunto "+str1.str(), urgenciaRand);
     listaTipoAssunto[i] = tipoAsuntoTemporal;
   }
 }
 
-void servicioAtendimiento::imprimirListaTipoAtendimento()
+void servicioAtendimento::imprimirListaTipoAtendimento()
 {
   for(int i=0; i<MAX_SIZE_LIST; i++){
-    cout<<"Tipo Assunto: "<< listaTipoAssunto[i].getTitulo()<<endl;
+    cout<<"Tipo Assunto: "<<listaTipoAssunto[i].getTitulo()<<
+          " // urgencia: "<<listaTipoAssunto[i].getUrgencia()<<endl;
   }
   cout<<endl;
 }
 
-void servicioAtendimiento::encerrar()
+void servicioAtendimento::encerrar()
 {
     time_t tempoEncerrar;
     time(&tempoEncerrar);
@@ -35,37 +35,40 @@ void servicioAtendimiento::encerrar()
     listaEncerrar.inserir(atendimentoEncerrar);
 }
 
-/*
-int main(){
-  servicioAtendimiento Objeto_SA;
-  // Objeto_SA.imprimirListaTipoAtendimento();
-  return 0;
+void servicioAtendimento::recepcionar(Cliente cliente_, MyList<Assunto> listaAssunto_)
+{
+  time_t tempoAgora;
+  time(&tempoAgora);
+  Atendimento Objeto_Atendimento(cliente_, listaAssunto_, tempoAgora);
+  heapAtendimento.inserir(Objeto_Atendimento);
 }
 
-// ----------------------------------------------------------------------
+MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
+{
+  MyList<Assunto> lista_Assunto;
+  for(int i=0; i<cantidade; i++){
+    ostringstream str1;
+    str1<<i+1;
+    tipoAssuntoRand = rand() % MAX_SIZE_LIST + 1;
+    Assunto Objecto_Assunto(listaTipoAssunto[tipoAssuntoRand], "testDescripcion "+str1.str());
+    lista_Assunto.inserir(Objecto_Assunto);
+  }
+  return lista_Assunto;
+}
 
 int main(){
-  servicioAtendimiento sa;
-  // Cliente
+  servicioAtendimento Objeto_SA;
+  MyList<Assunto> lista_Assuntos;
+  // Create Cliente
   int cpf = 064;
   string nome = "Jordan";
   int edade = 26;
   Cliente cliente(cpf, nome, edade);
+  // Create lista_Assuntos
+  lista_Assuntos = Objeto_SA.gerarListaAssunto(3);
 
-  //Asunto
-  Assunto asunto01(sa.listaTipoAssunto[0], "testDescripcion01");
-  Assunto asunto02(sa.listaTipoAssunto[1], "testDescripcion02");
-  Assunto asunto03(sa.listaTipoAssunto[2], "testDescripcion03");
-  Assunto asunto04(sa.listaTipoAssunto[3], "testDescripcion04");
-  sa.listaAsunto.insert(asunto01);
-  sa.listaAsunto.insert(asunto02);
-  sa.listaAsunto.insert(asunto03);
-  sa.listaAsunto.insert(asunto04);
+  // **** 1° funcao recepcionar
+  Objeto_SA.recepcionar(cliente, lista_Assuntos);
 
-  //Atendimiento
-  Atendimento atendimiento(cliente, sa.listaAsunto, 0);
-
-  sa.heap_estructura.inserir(atendimiento);
-
-  cout<<"tam: "<<sa.listaTipoAssunto[0].getTitulo()<<endl;
-}*/
+  return 0;
+}
