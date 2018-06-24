@@ -20,9 +20,9 @@ public:
     inline string getTitulo(){return titulo;}
     inline int getUrgencia(){return urgencia;}
 
-    inline void setType(int tipo_){tipo = tipo_;}
-    inline void setTitle(string titulo_){titulo = titulo_;}
-    inline void setUrgency(int urgencia_){urgencia = urgencia_;}
+    inline void setTipo(int tipo_){tipo = tipo_;}
+    inline void setTitulo(string titulo_){titulo = titulo_;}
+    inline void setUrgencia(int urgencia_){urgencia = urgencia_;}
 };
 
 
