@@ -93,7 +93,7 @@ float MyList<T>::mediaUrgencias(){
     int aux = 0;
     node *p_node = p_start;
     for (int i=0; i<size; i++) {
-        aux += p_node->cont.getType().getUrgency();
+        aux += p_node->cont.getTipo().getUrgencia();
     }
     return aux/size*1.0;
 }

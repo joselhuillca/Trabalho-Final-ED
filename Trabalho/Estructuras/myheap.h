@@ -1,20 +1,20 @@
 #ifndef MYHEAP_H
 #define MYHEAP_H
 
-#include "../atendimiento.h"
+#include "../atendimento.h"
 
 #define MAX_SIZE_HEAP 100
 
 class MyHeap
 {
 private:
-    Atendimiento *lista;
+    Atendimento *lista;
     int tamanho;
 public:
-    MyHeap(){lista = new Atendimiento[MAX_SIZE_HEAP](); tamanho = 0;}
+    MyHeap(){lista = new Atendimento[MAX_SIZE_HEAP](); tamanho = 0;}
     //~myheap();
 
-    void inserir(Atendimiento atendimiento);
+    void inserir(Atendimento atendimento);
     void subir(int posicao);
 
     void trocar(int i, int j);
@@ -23,12 +23,12 @@ public:
     void descer(int posicao);
 };
 
-void MyHeap::inserir(Atendimiento atendimiento)
+void MyHeap::inserir(Atendimento atendimento)
 {
     if(tamanho >= MAX_SIZE_HEAP){
         //resizeMyHeap();
     }else{
-        lista[tamanho] = atendimiento;
+        lista[tamanho] = atendimento;
         subir(tamanho);
         tamanho += 1;
     }
@@ -45,7 +45,7 @@ void MyHeap::subir(int posicao)
 
 void MyHeap::trocar(int i, int j)
 {
-    Atendimiento aux = lista[i];
+    Atendimento aux = lista[i];
     lista[i] = lista[j];
     lista[j] = aux;
 }

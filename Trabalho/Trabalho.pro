@@ -29,4 +29,6 @@ HEADERS += \
     cliente.h \
     servicioatendimiento.h \
     Estructuras/myheap.h \
-    Estructuras/mylist.h
+    Estructuras/mylist.h \
+    assunto.h \
+    atendimento.h

@@ -15,7 +15,7 @@ private:
     float prioridade;
 public:
     Atendimento(){}
-    Atendimento(Cliente cliente_, myList<Assunto> assuntos_, double horaChegada_) {
+    Atendimento(Cliente cliente_, MyList<Assunto> assuntos_, double horaChegada_) {
         cliente = cliente_;
         assuntos = assuntos_;
         horaChegada = horaChegada_;
@@ -23,7 +23,7 @@ public:
     }
 
     inline Cliente getCliente(){return cliente;}
-    inline myList<Assunto> getAssunto(){return assuntos;}
+    inline MyList<Assunto> getAssunto(){return assuntos;}
     inline double getHoraChegada(){return horaChegada;}
     inline double getHoraAtendimento(){return horaAtendimento;}
     inline float getPrioridade(){return prioridade;}
@@ -33,7 +33,7 @@ public:
 
     // Tiempo de espera esta en MINUTOS
     void calcularPrioridade(){
-        float edade_media = cliente.getAge()/65.0;
+        float edade_media = cliente.getIdade()/65.0;
         float espera_media = (horaAtendimento-horaChegada)/15.0;
         float assuntos_media = assuntos.mediaUrgencias();
 
