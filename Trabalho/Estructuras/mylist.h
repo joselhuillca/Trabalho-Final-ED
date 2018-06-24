@@ -29,7 +29,7 @@ public:
 
     inline int getSize(){return size;}
 
-    T* toList();
+    float mediaUrgencias();
 };
 
 /** ------------------ FUNCTIONS ------------------------ **/
@@ -89,14 +89,13 @@ void myList<T>::myprint(){
 }
 
 template<typename T>
-T* myList<T>::toList(){
-    T* aux = new T[size]();
+float myList<T>::mediaUrgencias(){
+    int aux = 0;
     node *p_node = p_start;
     for (int i=0; i<size; i++) {
-      aux[i] = p_node->cont;
-      p_node = p_node->p_next;
+        aux += p_node->cont.getType().getUrgency();
     }
-    return aux;
+    return aux/size*1.0;
 }
 
 #endif

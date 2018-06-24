@@ -53,7 +53,6 @@ public:
     inline void setDescription(string d){description = d;}
     inline void setDurationAttention(double da){durationAttention = da;}
     inline void setProvidence(float *prov){providence = prov;}
-
 };
 
 #endif // ASUNTO_H

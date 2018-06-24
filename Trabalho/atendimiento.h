@@ -35,12 +35,7 @@ public:
     void calcularPrioridade(){
         float edad_media = cliente.getAge()/65.0;
         float espera_media = (horaAtendimiento-horaLlegada)/15.0;
-        float asuntos_media = 0;
-        Asunto *asuntoList = asuntos.toList();
-        for (int i=0; i < asuntos.getSize(); i++) {
-          asuntos_media += asuntoList[i].getType().getUrgency();
-        }
-        asuntos_media = asuntos_media/asuntos.getSize()*1.0;
+        float asuntos_media = asuntos.mediaUrgencias();
 
         prioridade = (edad_media+espera_media+asuntos_media)/3.0;
     }
