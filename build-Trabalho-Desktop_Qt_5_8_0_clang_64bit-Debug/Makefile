@@ -49,11 +49,9 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Trabalho/main.cpp \
-		../Trabalho/servicioatendimiento.cpp \
-		../Trabalho/Estructuras/myheap.cpp 
+		../Trabalho/servicioatendimiento.cpp 
 OBJECTS       = main.o \
-		servicioatendimiento.o \
-		myheap.o
+		servicioatendimiento.o
 DIST          = ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/qdevice.pri \
 		../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/device_config.prf \
@@ -234,8 +232,7 @@ DIST          = ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		../Trabalho/servicioatendimiento.h \
 		../Trabalho/Estructuras/myheap.h \
 		../Trabalho/Estructuras/mylist.h ../Trabalho/main.cpp \
-		../Trabalho/servicioatendimiento.cpp \
-		../Trabalho/Estructuras/myheap.cpp
+		../Trabalho/servicioatendimiento.cpp
 QMAKE_TARGET  = Trabalho
 DESTDIR       = 
 TARGET        = Trabalho
@@ -616,7 +613,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.8.0/5.8/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Trabalho/atendimiento.h ../Trabalho/asunto.h ../Trabalho/cliente.h ../Trabalho/servicioatendimiento.h ../Trabalho/Estructuras/myheap.h ../Trabalho/Estructuras/mylist.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Trabalho/main.cpp ../Trabalho/servicioatendimiento.cpp ../Trabalho/Estructuras/myheap.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Trabalho/main.cpp ../Trabalho/servicioatendimiento.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -667,14 +664,13 @@ compiler_clean: compiler_moc_predefs_clean
 main.o: ../Trabalho/main.cpp ../Trabalho/Estructuras/mylist.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Trabalho/main.cpp
 
-servicioatendimiento.o: ../Trabalho/servicioatendimiento.cpp ../Trabalho/servicioatendimiento.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o servicioatendimiento.o ../Trabalho/servicioatendimiento.cpp
-
-myheap.o: ../Trabalho/Estructuras/myheap.cpp ../Trabalho/Estructuras/myheap.h \
+servicioatendimiento.o: ../Trabalho/servicioatendimiento.cpp ../Trabalho/servicioatendimiento.h \
 		../Trabalho/atendimiento.h \
 		../Trabalho/cliente.h \
-		../Trabalho/asunto.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o myheap.o ../Trabalho/Estructuras/myheap.cpp
+		../Trabalho/asunto.h \
+		../Trabalho/Estructuras/mylist.h \
+		../Trabalho/Estructuras/myheap.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o servicioatendimiento.o ../Trabalho/servicioatendimiento.cpp
 
 ####### Install
 

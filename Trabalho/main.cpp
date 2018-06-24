@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    myList<int> a;
+    MyList<int> a;
     a.myprint();
     cout<<"Hello World"<<endl;
     return 0;

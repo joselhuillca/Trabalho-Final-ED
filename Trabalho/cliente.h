@@ -8,22 +8,22 @@ class Cliente
 {
 private:
     int cpf;
-    string name;
-    int age;
+    string nome;
+    int idade;
 public:
     Cliente(){}
-    Cliente(int cpf_, string name_, int age_) {
+    Cliente(int cpf_, string nome_, int idade_) {
         cpf = cpf_;
-        name = name_;
-        age = age_;
+        nome = nome_;
+        idade = idade_;
     }
     inline int getCpf(){return cpf;}
-    inline string getName(){return name;}
-    inline int getAge(){return age;}
+    inline string getNome(){return nome;}
+    inline int getIdade(){return idade;}
 
     inline void setCpf(int cpf_){cpf = cpf_;}
-    inline void setName(string name_){name = name_;}
-    inline void setAge(int age_){age = age_;}
+    inline void setNome(string nome_){nome = nome_;}
+    inline void setIdade(int idade_){idade = idade_;}
 };
 
 #endif // CLIENTE_H

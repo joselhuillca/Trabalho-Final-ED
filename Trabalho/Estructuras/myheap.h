@@ -9,36 +9,36 @@ class MyHeap
 {
 private:
     Atendimiento *lista;
-    int size;
+    int tamanho;
 public:
-    MyHeap(){lista = new Atendimiento[MAX_SIZE_HEAP](); size = 0;}
+    MyHeap(){lista = new Atendimiento[MAX_SIZE_HEAP](); tamanho = 0;}
     //~myheap();
 
-    void insertar(Atendimiento atendimiento);
-    void subir(int position);
+    void inserir(Atendimiento atendimiento);
+    void subir(int posicao);
 
     void trocar(int i, int j);
 
     void excluir();
-    void descer(int position);
+    void descer(int posicao);
 };
 
-void MyHeap::insertar(Atendimiento atendimiento)
+void MyHeap::inserir(Atendimiento atendimiento)
 {
-    if(size >= MAX_SIZE_HEAP){
+    if(tamanho >= MAX_SIZE_HEAP){
         //resizeMyHeap();
     }else{
-        lista[size] = atendimiento;
-        subir(size);
-        size += 1;
+        lista[tamanho] = atendimiento;
+        subir(tamanho);
+        tamanho += 1;
     }
 }
 
-void MyHeap::subir(int position)
+void MyHeap::subir(int posicao)
 {
-    int padre = (position-1)/2;
-    if(lista[position].getPrioridade() > lista[padre].getPrioridade()){
-        trocar(position, padre);
+    int padre = (posicao-1)/2;
+    if(lista[posicao].getPrioridade() > lista[padre].getPrioridade()){
+        trocar(posicao, padre);
         subir(padre);
     }
 }
@@ -52,27 +52,27 @@ void MyHeap::trocar(int i, int j)
 
 void MyHeap::excluir()
 {
-    if(size>0){
-        size -= 1;
-        trocar(0, size);
+    if(tamanho>0){
+        tamanho -= 1;
+        trocar(0, tamanho);
         descer(0);
     }
 }
 
-void MyHeap::descer(int position)
+void MyHeap::descer(int posicao)
 {
-    int izq = 2*position + 1;
-    int der = 2*position + 2;
+    int izq = 2*posicao + 1;
+    int der = 2*posicao + 2;
     int j = izq;
 
-    if(izq < size){
-        if(der < size){
+    if(izq < tamanho){
+        if(der < tamanho){
             if(lista[der].getPrioridade() > lista[izq].getPrioridade()){
                 j = der;
             }
         }
-        if(lista[j].getPrioridade() > lista[position].getPrioridade()){
-            trocar(j, position);
+        if(lista[j].getPrioridade() > lista[posicao].getPrioridade()){
+            trocar(j, posicao);
             descer(j);
         }
     }
