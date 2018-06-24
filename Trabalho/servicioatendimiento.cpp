@@ -61,6 +61,7 @@ int main(){
 
   // **** 1° funcao recepcionar
   Objeto_SA.recepcionar(Cliente(64, "Jordan"), Objeto_SA.gerarListaAssunto(3));
+  Objeto_SA.recepcionar(Cliente(65, "Luis"), Objeto_SA.gerarListaAssunto(2));
   Objeto_SA.mostrarHeapAtenimento();
 
   cout<<"Termino todo"<<endl;

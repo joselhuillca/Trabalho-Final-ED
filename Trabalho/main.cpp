@@ -18,6 +18,11 @@ int main()
     double seconds = time1 - time0;
 
     cout<<"Time: "<<seconds<<endl;
+    MyList<int> a;
+    a.inserir(54);
+    a.inserir(76);
+    a.inserir(87);
+    cout<<a[2]<<endl;
     return 0;
 }
 */
