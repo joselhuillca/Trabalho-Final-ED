@@ -39,8 +39,10 @@ void servicioAtendimento::recepcionar(Cliente cliente_, MyList<Assunto> listaAss
 {
   time_t tempoAgora;
   time(&tempoAgora);
+
   Atendimento Objeto_Atendimento(cliente_, listaAssunto_, tempoAgora);
-  heapAtendimento.inserir(Objeto_Atendimento);
+  listaAtendimento.inserir(Objeto_Atendimento);
+  // heapAtendimento.inserir(Objeto_Atendimento);
 }
 
 MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
@@ -56,13 +58,34 @@ MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
   return lista_Assunto;
 }
 
+Atendimento servicioAtendimento::atender()
+{
+  time_t tempoAgora;
+  time(&tempoAgora);
+  // Create Heap
+  int tamanhoLista = listaAtendimento.getTamanho();
+  for(int i=0; i<tamanhoLista; i++){
+    Atendimento Objecto_Atendimento = listaAtendimento.get(i);
+    Objecto_Atendimento.setHoraAtendimento(tempoAgora);
+    heapAtendimento.inserir(Objecto_Atendimento);
+  }
+
+  // Get max prioridade
+  Atendimento atendimentoAtender = heapAtendimento.excluir();
+  return atendimentoAtender;
+}
+
+
 int main(){
   servicioAtendimento Objeto_SA;
 
   // **** 1° funcao recepcionar
   Objeto_SA.recepcionar(Cliente(64, "Jordan"), Objeto_SA.gerarListaAssunto(3));
   Objeto_SA.recepcionar(Cliente(65, "Luis"), Objeto_SA.gerarListaAssunto(2));
-  Objeto_SA.mostrarHeapAtenimento();
+  //Objeto_SA.mostrarHeapAtenimento();
+
+  // **** 2° funcao atender()
+  Atendimento Objeto_Atendimento = Objeto_SA.atender();
 
   cout<<"Termino todo"<<endl;
   return 0;

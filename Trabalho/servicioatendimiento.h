@@ -7,6 +7,7 @@
 #include <time.h>   // rand, get Time Current
 #include <sstream>  //Convert int to string
 #include <iostream>
+#include <stdlib.h> /* srand, rand */
 
 using namespace std;
 
@@ -18,6 +19,7 @@ class servicioAtendimento
   private:
     TipoAssunto *listaTipoAssunto;
     MyList<Atendimento> listaEncerrar;
+    MyList<Atendimento> listaAtendimento;
     MyHeap heapAtendimento;
 
   public:
@@ -26,6 +28,7 @@ class servicioAtendimento
     servicioAtendimento();
     void imprimirListaTipoAtendimento();
     void recepcionar(Cliente, MyList<Assunto>);
+    Atendimento atender();
     void encerrar();
     MyList<Assunto> gerarListaAssunto(int);
 

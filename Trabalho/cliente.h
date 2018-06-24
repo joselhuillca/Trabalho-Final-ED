@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <time.h>
+#include <stdlib.h> /* srand, rand */
 
 #define MAX_IDADE_RAND 70
 #define MIN_IDADE_RAND 18
