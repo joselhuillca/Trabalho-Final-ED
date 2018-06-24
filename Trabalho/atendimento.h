@@ -5,6 +5,9 @@
 #include "assunto.h"
 #include "Estructuras/mylist.h"
 
+#define MAX_IDADE 65.0
+#define MAX_MINUTOS 15.0
+
 class Atendimento
 {
 private:
@@ -33,8 +36,8 @@ public:
 
     // Tiempo de espera esta en MINUTOS
     void calcularPrioridade(){
-        float edade_media = cliente.getIdade()/65.0;
-        float espera_media = converterEmMinunutos(horaAtendimento-horaChegada)/15.0;
+        float edade_media = cliente.getIdade()/MAX_IDADE;
+        float espera_media = converterEmMinunutos(horaAtendimento-horaChegada)/MAX_MINUTOS;
         float assuntos_media = assuntos.mediaUrgencias();
 
         prioridade = (edade_media+espera_media+assuntos_media)/3.0;

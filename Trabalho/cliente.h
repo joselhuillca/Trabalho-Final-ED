@@ -2,6 +2,11 @@
 #define CLIENTE_H
 
 #include <iostream>
+#include <time.h>
+
+#define MAX_IDADE_RAND 70
+#define MIN_IDADE_RAND 18
+
 using namespace std;
 
 class Cliente
@@ -16,6 +21,12 @@ public:
         cpf = cpf_;
         nome = nome_;
         idade = idade_;
+    }
+    Cliente(int cpf_, string nome_) {
+        srand (time(NULL));
+        cpf = cpf_;
+        nome = nome_;
+        idade = rand() % MAX_IDADE_RAND + MIN_IDADE_RAND;
     }
     inline int getCpf(){return cpf;}
     inline string getNome(){return nome;}

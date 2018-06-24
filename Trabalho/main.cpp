@@ -3,7 +3,7 @@
 #include <time.h>
 
 using namespace std;
-
+/*
 int main()
 {
     time_t time0;
@@ -20,3 +20,4 @@ int main()
     cout<<"Time: "<<seconds<<endl;
     return 0;
 }
+*/

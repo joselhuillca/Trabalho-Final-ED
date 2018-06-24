@@ -10,7 +10,7 @@ servicioAtendimento::servicioAtendimento()
   for(int i=0; i<MAX_SIZE_LIST; i++){
     ostringstream str1;
     str1<<i+1;
-    urgenciaRand = rand() % GRAU_URGENCIA + 1;
+    int urgenciaRand = rand() % GRAU_URGENCIA + 1;
     TipoAssunto tipoAsuntoTemporal(i+1, "Asunto "+str1.str(), urgenciaRand);
     listaTipoAssunto[i] = tipoAsuntoTemporal;
   }
@@ -49,7 +49,7 @@ MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
   for(int i=0; i<cantidade; i++){
     ostringstream str1;
     str1<<i+1;
-    tipoAssuntoRand = rand() % MAX_SIZE_LIST + 1;
+    int tipoAssuntoRand = rand() % MAX_SIZE_LIST + 1;
     Assunto Objecto_Assunto(listaTipoAssunto[tipoAssuntoRand], "testDescripcion "+str1.str());
     lista_Assunto.inserir(Objecto_Assunto);
   }
@@ -58,17 +58,11 @@ MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
 
 int main(){
   servicioAtendimento Objeto_SA;
-  MyList<Assunto> lista_Assuntos;
-  // Create Cliente
-  int cpf = 064;
-  string nome = "Jordan";
-  int edade = 26;
-  Cliente cliente(cpf, nome, edade);
-  // Create lista_Assuntos
-  lista_Assuntos = Objeto_SA.gerarListaAssunto(3);
 
   // **** 1° funcao recepcionar
-  Objeto_SA.recepcionar(cliente, lista_Assuntos);
+  Objeto_SA.recepcionar(Cliente(64, "Jordan"), Objeto_SA.gerarListaAssunto(3));
+  Objeto_SA.mostrarHeapAtenimento();
 
+  cout<<"Termino todo"<<endl;
   return 0;
 }

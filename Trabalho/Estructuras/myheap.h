@@ -2,8 +2,11 @@
 #define MYHEAP_H
 
 #include "../atendimento.h"
+#include <iostream>
 
 #define MAX_SIZE_HEAP 100
+
+using namespace std;
 
 class MyHeap
 {
@@ -21,6 +24,8 @@ public:
 
     Atendimento excluir();
     void descer(int posicao);
+
+    void mostrarHeap();
 };
 
 void MyHeap::inserir(Atendimento atendimento)
@@ -78,6 +83,13 @@ void MyHeap::descer(int posicao)
             trocar(j, posicao);
             descer(j);
         }
+    }
+}
+
+void MyHeap::mostrarHeap()
+{
+    for(int i=0; i<tamanho; i++){
+        cout<<"Cliente: "<<lista[i].getCliente().getNome()<<"  Prioridade: "<<lista[i].getPrioridade()<<endl;
     }
 }
 

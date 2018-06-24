@@ -31,6 +31,7 @@ public:
 
     float mediaUrgencias();
     void setDuracaoAtendimento(double horaAtendimento, double horaEncerrar);
+    void setProvidencias(int max_idade, int max_minutos, int max_urgencia);
 };
 
 /** ------------------ FUNCTIONS ------------------------ **/
@@ -105,6 +106,15 @@ void MyList<T>::setDuracaoAtendimento(double horaAtendimento, double horaEncerra
     node *p_node = p_start;
     for (int i=0; i<tamanho; i++) {
         p_node->cont.setDuracaoAtendimento(horaEncerrar-horaAtendimento);
+    }
+}
+
+template<typename T>
+void MyList<T>::setProvidencias(int max_idade, int max_minutos, int max_urgencia){
+    node *p_node = p_start;
+    for (int i=0; i<tamanho; i++) {
+        float *providencias = new float[3];
+        //providencias[0] = p_node->cont.
     }
 }
 
