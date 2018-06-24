@@ -17,24 +17,25 @@ private:
       }
     };
 private:
-    int size;
+    int tamanho;
     node *p_start;
     node *p_insert;
 
 public:
-    MyList(){p_start=0;p_insert=0;size=0;}
-    void insert(T dato);
-    void remove_(T dato);
+    MyList(){p_start=0;p_insert=0;tamanho=0;}
+    void inserir(T dato);
+    void excluir(T dato);
     void myprint();
 
-    inline int getSize(){return size;}
+    inline int getTamanho(){return tamanho;}
 
     float mediaUrgencias();
+    void setDuracaoAtendimento(double horaAtendimento, double horaEncerrar);
 };
 
 /** ------------------ FUNCTIONS ------------------------ **/
 template<typename T>
-void MyList<T>::insert(T dato){
+void MyList<T>::inserir(T dato){
     node *new_node = new node;
     new_node->cont = dato;
     new_node->p_next = 0;
@@ -42,17 +43,17 @@ void MyList<T>::insert(T dato){
     if(p_start == 0){
         p_start = new_node;
         p_insert = new_node;
-        size += 1;
+        tamanho += 1;
     }
     else{
         p_insert->p_next = new_node;
         p_insert = p_insert->p_next;
-        size += 1;
+        tamanho += 1;
     }
 }
 
 template<typename T>
-void MyList<T>::remove_(T dato){
+void MyList<T>::excluir(T dato){
   if(p_start != 0){
     node *p_node = p_start;
     node *p_temp;
@@ -88,14 +89,23 @@ void MyList<T>::myprint(){
   }
 }
 
+// -------- funcoes proprias da classe de assunto ------
 template<typename T>
 float MyList<T>::mediaUrgencias(){
     int aux = 0;
     node *p_node = p_start;
-    for (int i=0; i<size; i++) {
+    for (int i=0; i<tamanho; i++) {
         aux += p_node->cont.getTipo().getUrgencia();
     }
-    return aux/size*1.0;
+    return aux/tamanho*1.0;
+}
+
+template<typename T>
+void MyList<T>::setDuracaoAtendimento(double horaAtendimento, double horaEncerrar){
+    node *p_node = p_start;
+    for (int i=0; i<tamanho; i++) {
+        p_node->cont.setDuracaoAtendimento(horaEncerrar-horaAtendimento);
+    }
 }
 
 #endif

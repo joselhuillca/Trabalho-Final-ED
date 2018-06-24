@@ -19,7 +19,7 @@ public:
 
     void trocar(int i, int j);
 
-    void excluir();
+    Atendimento excluir();
     void descer(int posicao);
 };
 
@@ -50,13 +50,16 @@ void MyHeap::trocar(int i, int j)
     lista[j] = aux;
 }
 
-void MyHeap::excluir()
+Atendimento MyHeap::excluir()
 {
     if(tamanho>0){
+        Atendimento aux = lista[0];
         tamanho -= 1;
         trocar(0, tamanho);
         descer(0);
+        return aux;
     }
+    return Atendimento();
 }
 
 void MyHeap::descer(int posicao)

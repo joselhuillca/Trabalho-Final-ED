@@ -23,7 +23,7 @@ public:
     }
 
     inline Cliente getCliente(){return cliente;}
-    inline MyList<Assunto> getAssunto(){return assuntos;}
+    inline MyList<Assunto> getAssuntos(){return assuntos;}
     inline double getHoraChegada(){return horaChegada;}
     inline double getHoraAtendimento(){return horaAtendimento;}
     inline float getPrioridade(){return prioridade;}
@@ -34,10 +34,15 @@ public:
     // Tiempo de espera esta en MINUTOS
     void calcularPrioridade(){
         float edade_media = cliente.getIdade()/65.0;
-        float espera_media = (horaAtendimento-horaChegada)/15.0;
+        float espera_media = converterEmMinunutos(horaAtendimento-horaChegada)/15.0;
         float assuntos_media = assuntos.mediaUrgencias();
 
         prioridade = (edade_media+espera_media+assuntos_media)/3.0;
+    }
+
+    // o tempo sera em segundos
+    float  converterEmMinunutos(float tempo){
+        return tempo/60.0;
     }
 };
 

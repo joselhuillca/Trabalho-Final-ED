@@ -25,7 +25,17 @@ void servicioAtendimiento::imprimirListaTipoAtendimento()
   cout<<endl;
 }
 
+void servicioAtendimiento::encerrar()
+{
+    time_t tempoEncerrar;
+    time(&tempoEncerrar);
+    Atendimento atendimentoEncerrar = heapAtendimento.excluir();
+    atendimentoEncerrar.getAssuntos().setDuracaoAtendimento(atendimentoEncerrar.getHoraAtendimento(), tempoEncerrar);
 
+    listaEncerrar.inserir(atendimentoEncerrar);
+}
+
+/*
 int main(){
   servicioAtendimiento Objeto_SA;
   // Objeto_SA.imprimirListaTipoAtendimento();
@@ -33,7 +43,7 @@ int main(){
 }
 
 // ----------------------------------------------------------------------
-/*
+
 int main(){
   servicioAtendimiento sa;
   // Cliente

@@ -17,16 +17,17 @@ class servicioAtendimiento
 {
   private:
     TipoAssunto *listaTipoAssunto;
+    MyList<Atendimento> listaEncerrar;
+    MyHeap heapAtendimento;
 
   public:
-    //vector<TipoAssunto> listaTipoAsunto;
-    //vector<Asunto> listaAsunto;
     MyList<Assunto> listaAsunto;
-    MyHeap heap_estructura;
 
     servicioAtendimiento();
     void imprimirListaTipoAtendimento();
     //myheap recepcionar(Atendimiento);
+
+    void encerrar();
 };
 
 #endif // SERVICIOATENDIMIENTO_H
