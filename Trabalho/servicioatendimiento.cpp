@@ -2,16 +2,34 @@
 
 servicioAtendimiento::servicioAtendimiento()
 {
-  TipoAssunto tipoAsunto01(1, "Asunto01", 1);
-  TipoAssunto tipoAsunto02(2, "Asunto02", 2);
-  TipoAssunto tipoAsunto03(3, "Asunto03", 3);
-  TipoAssunto tipoAsunto04(4, "Asunto04", 4);
-  TipoAssunto tipoAsunto05(5, "Asunto05", 5);
-  listaTipoAsunto.push_back(tipoAsunto01);
-  listaTipoAsunto.push_back(tipoAsunto02);
-  listaTipoAsunto.push_back(tipoAsunto03);
-  listaTipoAsunto.push_back(tipoAsunto04);
-  listaTipoAsunto.push_back(tipoAsunto05);
+  // Random
+  int urgenciaRand;
+  srand (time(NULL));
+  urgenciaRand = rand() % GRAU_URGENCIA + 1;
+
+  // Create list
+  listaTipoAssunto = new TipoAssunto[MAX_SIZE_LIST];
+  for(int i=0; i<MAX_SIZE_LIST; i++){
+    ostringstream str1;
+    str1<<i+1;
+    TipoAssunto tipoAsuntoTemporal(i+1, "Asunto "+str1.str(), urgenciaRand);
+    listaTipoAssunto[i] = tipoAsuntoTemporal;
+  }
+}
+
+void servicioAtendimiento::imprimirListaTipoAtendimento()
+{
+  for(int i=0; i<MAX_SIZE_LIST; i++){
+    cout<<"Tipo Assunto: "<< listaTipoAssunto[i].getTitulo()<<endl;
+  }
+  cout<<endl;
+}
+
+
+int main(){
+  servicioAtendimiento Objeto_SA;
+  // Objeto_SA.imprimirListaTipoAtendimento();
+  return 0;
 }
 
 // ----------------------------------------------------------------------
@@ -25,10 +43,10 @@ int main(){
   Cliente cliente(cpf, nome, edade);
 
   //Asunto
-  Assunto asunto01(sa.listaTipoAsunto[0], "testDescripcion01");
-  Assunto asunto02(sa.listaTipoAsunto[1], "testDescripcion02");
-  Assunto asunto03(sa.listaTipoAsunto[2], "testDescripcion03");
-  Assunto asunto04(sa.listaTipoAsunto[3], "testDescripcion04");
+  Assunto asunto01(sa.listaTipoAssunto[0], "testDescripcion01");
+  Assunto asunto02(sa.listaTipoAssunto[1], "testDescripcion02");
+  Assunto asunto03(sa.listaTipoAssunto[2], "testDescripcion03");
+  Assunto asunto04(sa.listaTipoAssunto[3], "testDescripcion04");
   sa.listaAsunto.insert(asunto01);
   sa.listaAsunto.insert(asunto02);
   sa.listaAsunto.insert(asunto03);
@@ -39,5 +57,5 @@ int main(){
 
   sa.heap_estructura.inserir(atendimiento);
 
-  cout<<"tam: "<<sa.listaTipoAsunto[0].getTitulo()<<endl;
+  cout<<"tam: "<<sa.listaTipoAssunto[0].getTitulo()<<endl;
 }*/
