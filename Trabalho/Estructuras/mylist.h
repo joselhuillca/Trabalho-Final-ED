@@ -6,7 +6,7 @@
 using namespace std;
 
 template<typename T>
-class myList{
+class MyList{
 private:
     struct node{
       T cont;
@@ -22,7 +22,7 @@ private:
     node *p_insert;
 
 public:
-    myList(){p_start=0;p_insert=0;size=0;}
+    MyList(){p_start=0;p_insert=0;size=0;}
     void insert(T dato);
     void remove_(T dato);
     void myprint();
@@ -34,7 +34,7 @@ public:
 
 /** ------------------ FUNCTIONS ------------------------ **/
 template<typename T>
-void myList<T>::insert(T dato){
+void MyList<T>::insert(T dato){
     node *new_node = new node;
     new_node->cont = dato;
     new_node->p_next = 0;
@@ -52,7 +52,7 @@ void myList<T>::insert(T dato){
 }
 
 template<typename T>
-void myList<T>::remove_(T dato){
+void MyList<T>::remove_(T dato){
   if(p_start != 0){
     node *p_node = p_start;
     node *p_temp;
@@ -73,7 +73,7 @@ void myList<T>::remove_(T dato){
 }
 
 template<typename T>
-void myList<T>::myprint(){
+void MyList<T>::myprint(){
   if(p_start != 0){
     cout<<"lista: ";
     node *p_node = p_start;
@@ -89,7 +89,7 @@ void myList<T>::myprint(){
 }
 
 template<typename T>
-float myList<T>::mediaUrgencias(){
+float MyList<T>::mediaUrgencias(){
     int aux = 0;
     node *p_node = p_start;
     for (int i=0; i<size; i++) {

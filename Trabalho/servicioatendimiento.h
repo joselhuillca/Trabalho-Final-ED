@@ -10,16 +10,14 @@ using namespace std;
 
 class servicioAtendimiento
 {
-private:
-//    vector<TipoAsunto> listaTipoAsunto;
-    // myList lista_simpla;
-    // myheap heap_estructura;
+  private:
 
-public:
+
+  public:
     vector<TipoAsunto> listaTipoAsunto;
     //vector<Asunto> listaAsunto;
-    myList<Asunto> listaAsunto;
-    myheap heap_estructura;
+    MyList<Asunto> listaAsunto;
+    MyHeap heap_estructura;
 
     servicioAtendimiento();
     //myheap recepcionar(Atendimiento);

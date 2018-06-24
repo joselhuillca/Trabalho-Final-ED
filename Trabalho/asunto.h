@@ -1,7 +1,7 @@
 #ifndef ASUNTO_H
 #define ASUNTO_H
 
-class TipoAsunto
+class TipoAssunto
 {
 private:
     int type;

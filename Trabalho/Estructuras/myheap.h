@@ -5,13 +5,13 @@
 
 #define MAX_SIZE_HEAP 100
 
-class myheap
+class MyHeap
 {
 private:
     Atendimiento *lista;
     int size;
 public:
-    myheap(){lista = new Atendimiento[MAX_SIZE_HEAP](); size = 0;}
+    MyHeap(){lista = new Atendimiento[MAX_SIZE_HEAP](); size = 0;}
     //~myheap();
 
     void insertar(Atendimiento atendimiento);
@@ -23,7 +23,7 @@ public:
     void descer(int position);
 };
 
-void myheap::insertar(Atendimiento atendimiento)
+void MyHeap::insertar(Atendimiento atendimiento)
 {
     if(size >= MAX_SIZE_HEAP){
         //resizeMyHeap();
@@ -34,7 +34,7 @@ void myheap::insertar(Atendimiento atendimiento)
     }
 }
 
-void myheap::subir(int position)
+void MyHeap::subir(int position)
 {
     int padre = (position-1)/2;
     if(lista[position].getPrioridade() > lista[padre].getPrioridade()){
@@ -43,14 +43,14 @@ void myheap::subir(int position)
     }
 }
 
-void myheap::trocar(int i, int j)
+void MyHeap::trocar(int i, int j)
 {
     Atendimiento aux = lista[i];
     lista[i] = lista[j];
     lista[j] = aux;
 }
 
-void myheap::excluir()
+void MyHeap::excluir()
 {
     if(size>0){
         size -= 1;
@@ -59,7 +59,7 @@ void myheap::excluir()
     }
 }
 
-void myheap::descer(int position)
+void MyHeap::descer(int position)
 {
     int izq = 2*position + 1;
     int der = 2*position + 2;
