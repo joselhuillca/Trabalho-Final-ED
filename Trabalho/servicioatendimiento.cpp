@@ -124,29 +124,37 @@ void servicioAtendimento::menu()
     cin>>opcao;
     switch(opcao)
     {
-         case 1:
-            cout<<" nome: ";
-            cin>>nome;
-            cout<<" CPF: ";
-            cin>>cpf;
-            cout<<" Numeros de assuntos: ";
-            cin>>numeroAssuntos;
-            recepcionar(Cliente(cpf, nome), gerarListaAssunto(numeroAssuntos));
-            cout<<"   ** Atendimento Recepcionado **"<<endl;
-            break;
-
-         case 2:
-            cout<<" Atendendo Cliente"<<endl;
-            Atendimento Objeto_Atendimento = atender();
-
-            string nomeCliente = Objeto_Atendimento.getCliente().getNome();
-            float prioridadeCliente = Objeto_Atendimento.getPrioridade();
-            cout<<" Cliente: "<<nomeCliente<<endl;
-            cout<<" Prioridade: "<<prioridadeCliente<<endl;
-            cout<<"   ** Encerrando Atendimento **"<<endl;
-            encerrar(Objeto_Atendimento);
-            break;
-
+    case 1:
+    {
+        cout<<" nome: ";
+        cin>>nome;
+        cout<<" CPF: ";
+        cin>>cpf;
+        cout<<" Numeros de assuntos: ";
+        cin>>numeroAssuntos;
+        recepcionar(Cliente(cpf, nome), gerarListaAssunto(numeroAssuntos));
+        cout<<"   ** Atendimento Recepcionado **"<<endl;
+        break;
+    }
+    case 2:
+    {
+        cout<<" Atendendo Cliente"<<endl;
+        Atendimento Objeto_Atendimento = atender();
+        string nomeCliente = Objeto_Atendimento.getCliente().getNome();
+        float prioridadeCliente = Objeto_Atendimento.getPrioridade();
+        cout<<" Cliente: "<<nomeCliente<<endl;
+        cout<<" Prioridade: "<<prioridadeCliente<<endl;
+        cout<<"   ** Encerrando Atendimento **"<<endl;
+        encerrar(Objeto_Atendimento);
+        break;
+    }
+    case 3:
+    {
+        gerarEstatistica();
+        break;
+    }
+    default:
+        break;
     }
   } while(opcao != 0);
 }
