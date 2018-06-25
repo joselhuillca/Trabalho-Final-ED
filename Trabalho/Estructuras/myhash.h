@@ -27,7 +27,7 @@ public:
 void MyHash::inserir(int k, Assunto assunto)
 {
     int index = funcaoHash(k);
-    if(index<tamanho){
+    if(index<tamanho && index>=0){
         myHash[index].inserir(assunto);
     }
 }

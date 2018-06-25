@@ -61,12 +61,22 @@ void MyList<T>::excluir(T dato){
   if(p_start != 0){
     node *p_node = p_start;
     node *p_temp;
-    while (p_node != 0) {
+    for (int i=0; i<tamanho;i++) {
       if(p_node->cont == dato){
-        p_temp->p_next = p_node->p_next;
-        p_node = p_node->p_next;
-        cout<<"Eliminado"<<endl;
+        if(i==0){
+            p_start = p_node->p_next;
+        }
+        else{
+            p_temp->p_next = p_node->p_next;
+            p_node = p_node->p_next;
+            if(i==tamanho-1){
+                p_insert = p_temp;
+            }
+        }
+
+        //cout<<"Eliminado:"<<endl;
         tamanho -=1;
+        break;
       }
       else{
         p_temp = p_node;

@@ -22,7 +22,8 @@ void servicioAtendimento::imprimirListaTipoAtendimento()
 {
   for(int i=0; i<MAX_SIZE_LIST; i++){
     cout<<"Tipo Assunto: "<<listaTipoAssunto[i].getTitulo()<<
-          " // urgencia: "<<listaTipoAssunto[i].getUrgencia()<<endl;
+          " // urgencia: "<<listaTipoAssunto[i].getUrgencia()<<
+       "// tipo-id: "<<listaTipoAssunto[i].getTipo()<<endl;
   }
   cout<<endl;
 }
@@ -53,10 +54,11 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
         cout<<" tempo de Assunto de tipo("<<str2.str()<<"): "<<duracaoAtendimento<<" segundos"<<endl<<endl;
         assunto.setDuracaoAtendimento(duracaoAtendimento);
         horaInicio += duracaoAtendimento;
-
         listaEncerrar.inserir(assunto.getTipo().getTipo(), assunto);
     }
+    cout<<"Excluyendo de lista de atendimento";
     listaAtendimento.excluir(atendimento);
+    cout<<"..."<<endl;
 }
 
 void servicioAtendimento::gerarEstatistica()
@@ -167,7 +169,7 @@ void servicioAtendimento::menu()
     }
     case 3:
     {
-        if(listaAtendimento.getTamanho()==0){
+        if(listaEncerrar.getTamanho()==0){
             cout<<" Nenhum cliente foi atendido..."<<endl;
         } else
             gerarEstatistica();
@@ -184,14 +186,8 @@ int main(){
   servicioAtendimento Objeto_SA;
   Objeto_SA.menu();
 
-  // **** 1° funcao recepcionar
-  // Objeto_SA.recepcionar(Cliente(64, "Jordan"), Objeto_SA.gerarListaAssunto(3));
-  // Objeto_SA.recepcionar(Cliente(65, "Luis"), Objeto_SA.gerarListaAssunto(2));
-  //Objeto_SA.mostrarHeapAtenimento();
-
-  // **** 2° funcao atender()
-  //Atendimento Objeto_Atendimento = Objeto_SA.atender();
-
+  //Objeto_SA.imprimirListaTipoAtendimento();
   cout<<"Termino todo"<<endl;
   return 0;
 }
+
