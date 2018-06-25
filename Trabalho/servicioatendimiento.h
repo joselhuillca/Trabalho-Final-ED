@@ -21,12 +21,13 @@ class servicioAtendimento
     TipoAssunto *listaTipoAssunto;
     MyHash listaEncerrar;
     MyList<Atendimento> listaAtendimento;
-    MyHeap heapAtendimento;
+    // MyHeap heapAtendimento;
 
   public:
 
     servicioAtendimento();
     void imprimirListaTipoAtendimento();
+    void imprimirListaAtendimento();
     void recepcionar(Cliente, MyList<Assunto>);
     Atendimento atender();
     void encerrar(Atendimento &atendimento);
@@ -35,7 +36,7 @@ class servicioAtendimento
     MyList<Assunto> gerarListaAssunto(int);
     void menu();
 
-    inline void mostrarHeapAtenimento(){ heapAtendimento.mostrarHeap(); }
+    // inline void mostrarHeapAtenimento(){ heapAtendimento.mostrarHeap(); }
 };
 
 #endif // SERVICIOATENDIMIENTO_H

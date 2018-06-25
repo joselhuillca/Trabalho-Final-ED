@@ -72,7 +72,7 @@ void servicioAtendimento::gerarEstatistica()
             mediaAtendimento = listaEncerrar.get(i).mediaDuracaoAtendimento();
             cout<<" TipoAssunto " + str1.str() + " : "<<mediaAtendimento<< " segundos" <<endl;
         }else{
-            cout<<"TipoAssunto" + str1.str() + " : -- " <<endl;
+            cout<<" TipoAssunto " + str1.str() + " : -- " <<endl;
         }
 
     }
@@ -85,7 +85,6 @@ void servicioAtendimento::recepcionar(Cliente cliente_, MyList<Assunto> listaAss
 
   Atendimento Objeto_Atendimento(cliente_, listaAssunto_, tempoAgora);
   listaAtendimento.inserir(Objeto_Atendimento);
-  // heapAtendimento.inserir(Objeto_Atendimento);
 }
 
 MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
@@ -105,16 +104,17 @@ Atendimento servicioAtendimento::atender()
 {
   time_t tempoAgora;
   time(&tempoAgora);
+  MyHeap heapTemporal;
   // Create Heap
   int tamanhoLista = listaAtendimento.getTamanho();
   for(int i=0; i<tamanhoLista; i++){
     Atendimento Objecto_Atendimento = listaAtendimento.get(i);
     Objecto_Atendimento.setHoraAtendimento(tempoAgora);
     Objecto_Atendimento.calcularPrioridade();
-    heapAtendimento.inserir(Objecto_Atendimento);
+    heapTemporal.inserir(Objecto_Atendimento);
   }
   // Get max prioridade
-  Atendimento atendimentoAtender = heapAtendimento.excluir();
+  Atendimento atendimentoAtender = heapTemporal.excluir();
   return atendimentoAtender;
 }
 
