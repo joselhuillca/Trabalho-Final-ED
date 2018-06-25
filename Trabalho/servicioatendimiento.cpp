@@ -160,7 +160,9 @@ void servicioAtendimento::menu()
             Atendimento Objeto_Atendimento = atender();
             string nomeCliente = Objeto_Atendimento.getCliente().getNome();
             float prioridadeCliente = Objeto_Atendimento.getPrioridade();
+            int idade = Objeto_Atendimento.getCliente().getIdade();
             cout<<" Cliente: "<<nomeCliente<<endl;
+            cout<<" Idade: "<<idade<<endl;
             cout<<" Prioridade: "<<prioridadeCliente<<endl<<endl;
             cout<<" |--------------- Encerrando Atendimento ---------------|"<<endl;
             encerrar(Objeto_Atendimento);

@@ -7,6 +7,7 @@
 
 #define MAX_IDADE 65.0
 #define MAX_MINUTOS 15.0
+#define MAX_GRAU_URGENCIA 10.0
 
 class Atendimento
 {
@@ -38,7 +39,7 @@ public:
     void calcularPrioridade(){
         float edade_media = cliente.getIdade()/MAX_IDADE;
         float espera_media = converterEmMinunutos(horaAtendimento-horaChegada)/MAX_MINUTOS;
-        float assuntos_media = assuntos.mediaUrgencias();
+        float assuntos_media = assuntos.mediaUrgencias()/MAX_GRAU_URGENCIA;
 
         prioridade = (edade_media+espera_media+assuntos_media)/3.0;
     }
