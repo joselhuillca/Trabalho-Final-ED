@@ -94,7 +94,7 @@ MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
   for(int i=0; i<cantidade; i++){
     ostringstream str1;
     str1<<i+1;
-    int tipoAssuntoRand = rand() % MAX_SIZE_LIST + 1;
+    int tipoAssuntoRand = rand() % MAX_SIZE_LIST;
     Assunto Objecto_Assunto(listaTipoAssunto[tipoAssuntoRand], "testDescripcion "+str1.str());
     lista_Assunto.inserir(Objecto_Assunto);
   }
