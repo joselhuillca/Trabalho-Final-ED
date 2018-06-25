@@ -122,7 +122,7 @@ void servicioAtendimento::menu()
     cout<<" 2 - Atender e Encerrar"<<endl;
     cout<<" 3 - Gerar Estatistica"<<endl;
     cout<<" 0 - sair"<<endl;
-    cout<<"listaAtendimento_tam:"<<listaAsunto.getTamanho()<<endl;
+    cout<<"clientes a espera:"<<listaAtendimento.getTamanho()<<endl;
     cin>>opcao;
     switch(opcao)
     {
@@ -140,14 +140,18 @@ void servicioAtendimento::menu()
     }
     case 2:
     {
-        cout<<" Atendendo Cliente"<<endl;
-        Atendimento Objeto_Atendimento = atender();
-        string nomeCliente = Objeto_Atendimento.getCliente().getNome();
-        float prioridadeCliente = Objeto_Atendimento.getPrioridade();
-        cout<<" Cliente: "<<nomeCliente<<endl;
-        cout<<" Prioridade: "<<prioridadeCliente<<endl;
-        cout<<"   ** Encerrando Atendimento **"<<endl;
-        encerrar(Objeto_Atendimento);
+        if(listaAtendimento.getTamanho()==0){
+            cout<<"Nenhum cliente esperando..."<<endl;
+        }else{
+            cout<<" Atendendo Cliente"<<endl;
+            Atendimento Objeto_Atendimento = atender();
+            string nomeCliente = Objeto_Atendimento.getCliente().getNome();
+            float prioridadeCliente = Objeto_Atendimento.getPrioridade();
+            cout<<" Cliente: "<<nomeCliente<<endl;
+            cout<<" Prioridade: "<<prioridadeCliente<<endl;
+            cout<<"   ** Encerrando Atendimento **"<<endl;
+            encerrar(Objeto_Atendimento);
+        }
         break;
     }
     case 3:

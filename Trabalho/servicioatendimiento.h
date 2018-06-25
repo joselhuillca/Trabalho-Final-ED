@@ -24,7 +24,6 @@ class servicioAtendimento
     MyHeap heapAtendimento;
 
   public:
-    MyList<Assunto> listaAsunto;
 
     servicioAtendimento();
     void imprimirListaTipoAtendimento();
