@@ -24,7 +24,9 @@ private:
 public:
     MyList(){p_start=0;p_insert=0;tamanho=0;}
     void inserir(T dato);
+    void inserir2(T dato);
     void excluir(T dato);
+    void excluir2(T dato);
     void myprint();
 
     inline int getTamanho(){return tamanho;}
@@ -57,6 +59,26 @@ void MyList<T>::inserir(T dato){
 }
 
 template<typename T>
+void MyList<T>::inserir2(T dato){
+    node *new_node = new node;
+    new_node->cont = dato;
+    new_node->p_next = 0;
+
+    if(p_start == 0){
+        p_start = new_node;
+        tamanho += 1;
+    }
+    else{
+        node *p_temp = p_start;
+        while (p_temp->p_next != 0) {
+          p_temp = p_temp->p_next;
+        }
+        p_temp->p_next = new_node;
+        tamanho += 1;
+    }
+}
+
+template<typename T>
 void MyList<T>::excluir(T dato){
   if(p_start != 0){
     node *p_node = p_start;
@@ -82,6 +104,28 @@ void MyList<T>::excluir(T dato){
         p_temp = p_node;
         p_node = p_node->p_next;
       }
+    }
+  }
+  else{
+    cout<<"Lista vacia"<<endl;
+  }
+}
+
+template<typename T>
+void MyList<T>::excluir2(T dato){
+  node *p_ante;
+  node * p_temp = p_start;
+
+  if(p_start != 0){
+    while (p_temp != 0) {
+      if(p_temp->cont == dato){
+        if(p_temp == p_start)
+          p_start = p_start->p_next;
+        else
+          p_ante->p_next = p_temp->p_next;
+      }
+      p_ante = p_temp;
+      p_temp = p_temp->p_next;
     }
   }
   else{
