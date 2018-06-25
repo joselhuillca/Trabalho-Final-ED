@@ -4,6 +4,7 @@
 #include "atendimento.h"
 #include "Estructuras/myheap.h"
 #include "Estructuras/mylist.h"
+#include "Estructuras/myhash.h"
 #include <time.h>   // rand, get Time Current
 #include <sstream>  //Convert int to string
 #include <iostream>
@@ -18,7 +19,7 @@ class servicioAtendimento
 {
   private:
     TipoAssunto *listaTipoAssunto;
-    MyList<Atendimento> listaEncerrar;
+    MyHash listaEncerrar;
     MyList<Atendimento> listaAtendimento;
     MyHeap heapAtendimento;
 

@@ -30,6 +30,7 @@ public:
     inline int getTamanho(){return tamanho;}
 
     float mediaUrgencias();
+    float mediaDuracaoAtendimento();
 
     T get(int posicao);
     T operator[](int posicao){return get(posicao);}
@@ -101,13 +102,24 @@ T MyList<T>::get(int posicao)
     return p_node->cont;
 }
 
-/** -------- funcoes proprias da classe de assunto ------  **/
+/** -------- funcoes proprias da classe de ASSUNTO ------  **/
 template<typename T>
 float MyList<T>::mediaUrgencias(){
     int aux = 0;
     node *p_node = p_start;
     for (int i=0; i<tamanho; i++) {
         aux += p_node->cont.getTipo().getUrgencia();
+    }
+    return aux/tamanho*1.0;
+}
+
+template<typename T>
+float MyList<T>::mediaDuracaoAtendimento()
+{
+    int aux = 0;
+    node *p_node = p_start;
+    for (int i=0; i<tamanho; i++) {
+        aux += p_node->cont.getDuracaoAtendimento();
     }
     return aux/tamanho*1.0;
 }

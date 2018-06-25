@@ -14,6 +14,8 @@ servicioAtendimento::servicioAtendimento()
     TipoAssunto tipoAsuntoTemporal(i+1, "Asunto "+str1.str(), urgenciaRand);
     listaTipoAssunto[i] = tipoAsuntoTemporal;
   }
+
+  listaEncerrar = MyHash(MAX_SIZE_LIST);
 }
 
 void servicioAtendimento::imprimirListaTipoAtendimento()
@@ -42,21 +44,28 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
         cout<<"Asunto" + str1.str()<<" - Providencias:";
         cin>>aux_providencia;
 
-        atendimento.getAssuntos().get(i).setProvidencias(aux_providencia);
+        Assunto assunto = atendimento.getAssuntos().get(i);
+        assunto.setProvidencias(aux_providencia);
         time(&tempoProvidencias);
         double duracaoAtendimento = tempoProvidencias-horaInicio;
-        cout<<"tempo de Assunto: "<<duracaoAtendimento<<endl;
-        atendimento.getAssuntos().get(i).setDuracaoAtendimento(duracaoAtendimento);
+        ostringstream str2;
+        str2<<assunto.getTipo().getTipo();
+        cout<<"tempo de Assunto de tipo("<<str2.str()<<"): "<<duracaoAtendimento<<" segundos"<<endl;
+        assunto.setDuracaoAtendimento(duracaoAtendimento);
         horaInicio += duracaoAtendimento;
-    }
 
-    listaEncerrar.inserir(atendimento);
+        listaEncerrar.inserir(assunto.getTipo().getTipo(), assunto);
+    }
 }
 
 void servicioAtendimento::gerarEstatistica()
 {
     cout<<"Gerando estatísticas da minha listaEncerrar:"<<endl;
-
+    for(int i=0; i<listaEncerrar.getTamanho();i++){
+        ostringstream str1;
+        str1<<i+1;
+        cout<<"TipoAssunto" + str1.str() + " : "<<listaEncerrar.get(i).mediaDuracaoAtendimento()<< " segundos" <<endl;
+    }
 }
 
 void servicioAtendimento::recepcionar(Cliente cliente_, MyList<Assunto> listaAssunto_)
@@ -115,28 +124,29 @@ void servicioAtendimento::menu()
     cin>>opcao;
     switch(opcao)
     {
-      case 1:
-        cout<<" nome: ";
-        cin>>nome;
-        cout<<" CPF: ";
-        cin>>cpf;
-        cout<<" Numeros de assuntos: ";
-        cin>>numeroAssuntos;
-        recepcionar(Cliente(cpf, nome), gerarListaAssunto(numeroAssuntos));
-        cout<<"   ** Atendimento Recepcionado **"<<endl;
-        break;
+         case 1:
+            cout<<" nome: ";
+            cin>>nome;
+            cout<<" CPF: ";
+            cin>>cpf;
+            cout<<" Numeros de assuntos: ";
+            cin>>numeroAssuntos;
+            recepcionar(Cliente(cpf, nome), gerarListaAssunto(numeroAssuntos));
+            cout<<"   ** Atendimento Recepcionado **"<<endl;
+            break;
 
-      case 2:
-        cout<<" Atendendo Cliente"<<endl;
-        Atendimento Objeto_Atendimento = atender();
+         case 2:
+            cout<<" Atendendo Cliente"<<endl;
+            Atendimento Objeto_Atendimento = atender();
 
-        string nomeCliente = Objeto_Atendimento.getCliente().getNome();
-        float prioridadeCliente = Objeto_Atendimento.getPrioridade();
-        cout<<" Cliente: "<<nomeCliente<<endl;
-        cout<<" Prioridade: "<<prioridadeCliente<<endl;
-        cout<<"   ** Encerrando Atendimento **"<<endl;
-        encerrar(Objeto_Atendimento);
-        break;
+            string nomeCliente = Objeto_Atendimento.getCliente().getNome();
+            float prioridadeCliente = Objeto_Atendimento.getPrioridade();
+            cout<<" Cliente: "<<nomeCliente<<endl;
+            cout<<" Prioridade: "<<prioridadeCliente<<endl;
+            cout<<"   ** Encerrando Atendimento **"<<endl;
+            encerrar(Objeto_Atendimento);
+            break;
+
     }
   } while(opcao != 0);
 }

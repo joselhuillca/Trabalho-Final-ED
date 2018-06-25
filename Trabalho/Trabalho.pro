@@ -24,11 +24,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += \
-    atendimiento.h \
-    asunto.h \
     cliente.h \
     servicioatendimiento.h \
     Estructuras/myheap.h \
     Estructuras/mylist.h \
     assunto.h \
-    atendimento.h
+    atendimento.h \
+    Estructuras/myhash.h
