@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#define MAX_SIZE_LIST 20
+#define MAX_SIZE_LIST 10
 #define GRAU_URGENCIA 10
 
 class servicioAtendimento

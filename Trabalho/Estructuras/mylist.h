@@ -122,6 +122,7 @@ float MyList<T>::mediaUrgencias(){
     node *p_node = p_start;
     for (int i=0; i<tamanho; i++) {
         aux += p_node->cont.getTipo().getUrgencia();
+        p_node = p_node->p_next;
     }
     return aux/tamanho*1.0;
 }
@@ -133,6 +134,7 @@ float MyList<T>::mediaDuracaoAtendimento()
     node *p_node = p_start;
     for (int i=0; i<tamanho; i++) {
         aux += p_node->cont.getDuracaoAtendimento();
+        p_node = p_node->p_next;
     }
     return aux/tamanho*1.0;
 }
