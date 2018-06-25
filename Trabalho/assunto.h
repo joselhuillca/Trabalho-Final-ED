@@ -31,11 +31,11 @@ class Assunto
 private:
     TipoAssunto tipo;
     string descricao;
-    float *providencias;
+    string providencias;
     double duracaoAtendimento;
 public:
     Assunto(){}
-    Assunto(TipoAssunto tipo_, string descricao_, float *prov=0, double durationA=0) {
+    Assunto(TipoAssunto tipo_, string descricao_, string prov="", double durationA=0) {
         tipo = tipo_;
         descricao = descricao_;
         providencias = prov;
@@ -44,12 +44,12 @@ public:
 
     inline string getDescricao(){return descricao;}
     inline double getDuracaoAtendimento(){return duracaoAtendimento;}
-    inline float* getProvidencias(){return providencias;}
+    inline string getProvidencias(){return providencias;}
     inline TipoAssunto getTipo(){return tipo;}
 
     inline void setDescricao(string d){descricao = d;}
     inline void setDuracaoAtendimento(double da){duracaoAtendimento = da;}
-    inline void setProvidencias(float *prov){providencias = prov;}
+    inline void setProvidencias(string prov){providencias = prov;}
 };
 
 #endif // ASUNTO_H

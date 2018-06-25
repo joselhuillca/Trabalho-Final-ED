@@ -25,14 +25,37 @@ void servicioAtendimento::imprimirListaTipoAtendimento()
   cout<<endl;
 }
 
-void servicioAtendimento::encerrar()
+void servicioAtendimento::encerrar(Atendimento &atendimento)
 {
-    time_t tempoEncerrar;
-    time(&tempoEncerrar);
-    Atendimento atendimentoEncerrar = heapAtendimento.excluir();
-    atendimentoEncerrar.getAssuntos().setDuracaoAtendimento(atendimentoEncerrar.getHoraAtendimento(), tempoEncerrar);
+    time_t tempoProvidencias;
 
-    listaEncerrar.inserir(atendimentoEncerrar);
+    int num_assuntos = atendimento.getAssuntos().getTamanho();
+    string aux_providencia;
+    double horaInicio = atendimento.getHoraAtendimento();
+
+    ostringstream str0;
+    str0<<num_assuntos;
+    cout<<"providências tomadas para atender as "<< str0.str() <<" demandas dos clientes:"<<endl;
+    for(int i=0; i<num_assuntos; i++){
+        ostringstream str1;
+        str1<<i+1;
+        cout<<"Asunto" + str1.str()<<" - Providencias:";
+        cin>>aux_providencia;
+
+        atendimento.getAssuntos().get(i).setProvidencias(aux_providencia);
+        time(&tempoProvidencias);
+        double duracaoAtendimento = tempoProvidencias-horaInicio;
+        atendimento.getAssuntos().get(i).setDuracaoAtendimento(duracaoAtendimento);
+        horaInicio += duracaoAtendimento;
+    }
+
+    listaEncerrar.inserir(atendimento);
+}
+
+void servicioAtendimento::gerarEstatística()
+{
+    cout<<"Gerando estatísticas da minha listaEncerrar:"<<endl;
+
 }
 
 void servicioAtendimento::recepcionar(Cliente cliente_, MyList<Assunto> listaAssunto_)

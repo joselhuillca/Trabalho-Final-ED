@@ -29,7 +29,9 @@ class servicioAtendimento
     void imprimirListaTipoAtendimento();
     void recepcionar(Cliente, MyList<Assunto>);
     Atendimento atender();
-    void encerrar();
+    void encerrar(Atendimento &atendimento);
+    void gerarEstatística();
+
     MyList<Assunto> gerarListaAssunto(int);
 
     inline void mostrarHeapAtenimento(){ heapAtendimento.mostrarHeap(); }

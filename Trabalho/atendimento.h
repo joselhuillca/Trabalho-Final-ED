@@ -32,7 +32,7 @@ public:
     inline float getPrioridade(){return prioridade;}
 
     inline void setHoraChegada(double horaChegada_){horaChegada = horaChegada_;}
-    inline void setHoraAtendimento(int horaAtendimento_){horaAtendimento = horaAtendimento_;}
+    inline void setHoraAtendimento(double horaAtendimento_){horaAtendimento = horaAtendimento_;}
 
     // Tiempo de espera esta en MINUTOS
     void calcularPrioridade(){

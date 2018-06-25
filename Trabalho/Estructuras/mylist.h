@@ -30,8 +30,6 @@ public:
     inline int getTamanho(){return tamanho;}
 
     float mediaUrgencias();
-    void setDuracaoAtendimento(double horaAtendimento, double horaEncerrar);
-    void setProvidencias(int max_idade, int max_minutos, int max_urgencia);
 
     T get(int posicao);
     T operator[](int posicao){return get(posicao);}
@@ -93,34 +91,6 @@ void MyList<T>::myprint(){
   }
 }
 
-// -------- funcoes proprias da classe de assunto ------
-template<typename T>
-float MyList<T>::mediaUrgencias(){
-    int aux = 0;
-    node *p_node = p_start;
-    for (int i=0; i<tamanho; i++) {
-        aux += p_node->cont.getTipo().getUrgencia();
-    }
-    return aux/tamanho*1.0;
-}
-
-template<typename T>
-void MyList<T>::setDuracaoAtendimento(double horaAtendimento, double horaEncerrar){
-    node *p_node = p_start;
-    for (int i=0; i<tamanho; i++) {
-        p_node->cont.setDuracaoAtendimento(horaEncerrar-horaAtendimento);
-    }
-}
-
-template<typename T>
-void MyList<T>::setProvidencias(int max_idade, int max_minutos, int max_urgencia){
-    node *p_node = p_start;
-    for (int i=0; i<tamanho; i++) {
-        float *providencias = new float[3];
-        //providencias[0] = p_node->cont.
-    }
-}
-
 template<typename T>
 T MyList<T>::get(int posicao)
 {
@@ -129,6 +99,17 @@ T MyList<T>::get(int posicao)
         p_node = p_node->p_next;
     }
     return p_node->cont;
+}
+
+/** -------- funcoes proprias da classe de assunto ------  **/
+template<typename T>
+float MyList<T>::mediaUrgencias(){
+    int aux = 0;
+    node *p_node = p_start;
+    for (int i=0; i<tamanho; i++) {
+        aux += p_node->cont.getTipo().getUrgencia();
+    }
+    return aux/tamanho*1.0;
 }
 
 #endif
