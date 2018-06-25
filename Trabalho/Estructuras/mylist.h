@@ -28,6 +28,7 @@ public:
     void myprint();
 
     inline int getTamanho(){return tamanho;}
+    inline bool estaVazio(){return tamanho==0;}
 
     float mediaUrgencias();
     float mediaDuracaoAtendimento();

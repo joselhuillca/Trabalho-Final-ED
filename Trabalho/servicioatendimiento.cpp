@@ -65,7 +65,14 @@ void servicioAtendimento::gerarEstatistica()
     for(int i=0; i<listaEncerrar.getTamanho();i++){
         ostringstream str1;
         str1<<i+1;
-        cout<<"TipoAssunto" + str1.str() + " : "<<listaEncerrar.get(i).mediaDuracaoAtendimento()<< " segundos" <<endl;
+        float mediaAtendimento = 0;
+        if(!listaEncerrar.get(i).estaVazio()){
+            mediaAtendimento = listaEncerrar.get(i).mediaDuracaoAtendimento();
+            cout<<"TipoAssunto" + str1.str() + " : "<<mediaAtendimento<< " segundos" <<endl;
+        }else{
+            cout<<"TipoAssunto" + str1.str() + " : -- " <<endl;
+        }
+
     }
 }
 
