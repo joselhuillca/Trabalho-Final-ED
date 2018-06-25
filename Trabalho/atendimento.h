@@ -47,6 +47,13 @@ public:
     float  converterEmMinunutos(float tempo){
         return tempo/60.0;
     }
+
+    bool operator ==(Atendimento atendimentoX){
+        if(this->getCliente().getCpf() == atendimentoX.getCliente().getCpf()){
+            return true;
+        }
+        return false;
+    }
 };
 
 #endif // ATENDIMIENTO_H

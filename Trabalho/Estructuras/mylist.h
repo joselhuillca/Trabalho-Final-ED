@@ -64,6 +64,8 @@ void MyList<T>::excluir(T dato){
       if(p_node->cont == dato){
         p_temp->p_next = p_node->p_next;
         p_node = p_node->p_next;
+        cout<<"Eliminado"<<endl;
+        tamanho -=1;
       }
       else{
         p_temp = p_node;

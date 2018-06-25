@@ -56,6 +56,7 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
 
         listaEncerrar.inserir(assunto.getTipo().getTipo(), assunto);
     }
+    listaAtendimento.excluir(atendimento);
 }
 
 void servicioAtendimento::gerarEstatistica()
@@ -121,6 +122,7 @@ void servicioAtendimento::menu()
     cout<<" 2 - Atender e Encerrar"<<endl;
     cout<<" 3 - Gerar Estatistica"<<endl;
     cout<<" 0 - sair"<<endl;
+    cout<<"listaAtendimento_tam:"<<listaAsunto.getTamanho()<<endl;
     cin>>opcao;
     switch(opcao)
     {
