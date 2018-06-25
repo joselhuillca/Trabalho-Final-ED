@@ -37,11 +37,11 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
 
     ostringstream str0;
     str0<<num_assuntos;
-    cout<<"providências tomadas para atender as "<< str0.str() <<" demandas dos clientes:"<<endl;
+    cout<<" providências tomadas para atender as "<< str0.str() <<" demandas dos clientes: "<<endl;
     for(int i=0; i<num_assuntos; i++){
         ostringstream str1;
         str1<<i+1;
-        cout<<"Asunto" + str1.str()<<" - Providencias:";
+        cout<<" Asunto " + str1.str()<<" - Providencias: ";
         cin>>aux_providencia;
 
         Assunto assunto = atendimento.getAssuntos().get(i);
@@ -50,7 +50,7 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
         double duracaoAtendimento = tempoProvidencias-horaInicio;
         ostringstream str2;
         str2<<assunto.getTipo().getTipo();
-        cout<<"tempo de Assunto de tipo("<<str2.str()<<"): "<<duracaoAtendimento<<" segundos"<<endl;
+        cout<<" tempo de Assunto de tipo("<<str2.str()<<"): "<<duracaoAtendimento<<" segundos"<<endl<<endl;
         assunto.setDuracaoAtendimento(duracaoAtendimento);
         horaInicio += duracaoAtendimento;
 
@@ -61,7 +61,7 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
 
 void servicioAtendimento::gerarEstatistica()
 {
-    cout<<"Gerando estatísticas da minha listaEncerrar:"<<endl;
+    cout<<" Gerando estatísticas da minha listaEncerrar: "<<endl;
     for(int i=0; i<listaEncerrar.getTamanho();i++){
         ostringstream str1;
         str1<<i+1;
@@ -124,46 +124,53 @@ void servicioAtendimento::menu()
   string nome;
 
   do{
-    cout<<endl<<"     Servico de Atendimento"<<endl<<endl;
-    cout<<" 1 - recepcionar"<<endl;
+    cout<<endl<<" |------------------------------------------------------|"<<endl;
+    cout<<" |                 SERVICO ATENDIMENTO                  |"<<endl;
+    cout<<" |------------------------------------------------------|"<<endl<<endl;
+    cout<<" 1 - Recepcionar"<<endl;
     cout<<" 2 - Atender e Encerrar"<<endl;
     cout<<" 3 - Gerar Estatistica"<<endl;
-    cout<<" 0 - sair"<<endl;
-    cout<<"clientes a espera:"<<listaAtendimento.getTamanho()<<endl;
+    cout<<" 0 - Sair"<<endl;
+    cout<<" Clientes a espera: "<<listaAtendimento.getTamanho()<<endl;
+    cout<<" Opcao: ";
     cin>>opcao;
+    cout<<endl;
     switch(opcao)
     {
     case 1:
     {
-        cout<<" nome: ";
+        cout<<" Nome: ";
         cin>>nome;
         cout<<" CPF: ";
         cin>>cpf;
         cout<<" Numeros de assuntos: ";
         cin>>numeroAssuntos;
         recepcionar(Cliente(cpf, nome), gerarListaAssunto(numeroAssuntos));
-        cout<<"   ** Atendimento Recepcionado **"<<endl;
+        cout<<" |-------------- Atendimento Recepcionado --------------|"<<endl;
         break;
     }
     case 2:
     {
         if(listaAtendimento.getTamanho()==0){
-            cout<<"Nenhum cliente esperando..."<<endl;
+            cout<<" Nenhum cliente esperando..."<<endl;
         }else{
-            cout<<" Atendendo Cliente"<<endl;
+            cout<<" |------------------ Atendendo Cliente -----------------|"<<endl;
             Atendimento Objeto_Atendimento = atender();
             string nomeCliente = Objeto_Atendimento.getCliente().getNome();
             float prioridadeCliente = Objeto_Atendimento.getPrioridade();
             cout<<" Cliente: "<<nomeCliente<<endl;
-            cout<<" Prioridade: "<<prioridadeCliente<<endl;
-            cout<<"   ** Encerrando Atendimento **"<<endl;
+            cout<<" Prioridade: "<<prioridadeCliente<<endl<<endl;
+            cout<<" |--------------- Encerrando Atendimento ---------------|"<<endl;
             encerrar(Objeto_Atendimento);
         }
         break;
     }
     case 3:
     {
-        gerarEstatistica();
+        if(listaAtendimento.getTamanho()==0){
+            cout<<" Nenhum cliente foi atendido..."<<endl;
+        } else
+            gerarEstatistica();
         break;
     }
     default:
