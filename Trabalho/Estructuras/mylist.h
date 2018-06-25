@@ -174,7 +174,7 @@ float MyList<T>::mediaUrgencias(){
 template<typename T>
 float MyList<T>::mediaDuracaoAtendimento()
 {
-    int aux = 0;
+    float aux = 0.0;
     node *p_node = p_start;
     for (int i=0; i<tamanho; i++) {
         aux += p_node->cont.getDuracaoAtendimento();
