@@ -63,14 +63,14 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
 
 void servicioAtendimento::gerarEstatistica()
 {
-    cout<<" Gerando estatísticas da minha listaEncerrar: "<<endl;
+    cout<<" | --- Gerando estatísticas da minha listaEncerrar: --- |"<<endl;
     for(int i=1; i<=listaEncerrar.getTamanho();i++){
         ostringstream str1;
         str1<<i;
         float mediaAtendimento = 0.0;
         if(!listaEncerrar.get(i).estaVazio()){
             mediaAtendimento = listaEncerrar.get(i).mediaDuracaoAtendimento();
-            cout<<"TipoAssunto" + str1.str() + " : "<<mediaAtendimento<< " segundos" <<endl;
+            cout<<" TipoAssunto " + str1.str() + " : "<<mediaAtendimento<< " segundos" <<endl;
         }else{
             cout<<"TipoAssunto" + str1.str() + " : -- " <<endl;
         }
@@ -190,4 +190,3 @@ int main(){
   cout<<"Termino todo"<<endl;
   return 0;
 }
-

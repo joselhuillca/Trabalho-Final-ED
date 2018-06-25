@@ -41,7 +41,7 @@ public:
 
 /** ------------------ FUNCTIONS ------------------------ **/
 template<typename T>
-void MyList<T>::inserir(T dato){
+void MyList<T>::inserir2(T dato){
     node *new_node = new node;
     new_node->cont = dato;
     new_node->p_next = 0;
@@ -59,7 +59,7 @@ void MyList<T>::inserir(T dato){
 }
 
 template<typename T>
-void MyList<T>::inserir2(T dato){
+void MyList<T>::inserir(T dato){
     node *new_node = new node;
     new_node->cont = dato;
     new_node->p_next = 0;
@@ -79,7 +79,7 @@ void MyList<T>::inserir2(T dato){
 }
 
 template<typename T>
-void MyList<T>::excluir(T dato){
+void MyList<T>::excluir2(T dato){
   if(p_start != 0){
     node *p_node = p_start;
     node *p_temp;
@@ -112,7 +112,7 @@ void MyList<T>::excluir(T dato){
 }
 
 template<typename T>
-void MyList<T>::excluir2(T dato){
+void MyList<T>::excluir(T dato){
   node *p_ante;
   node * p_temp = p_start;
 
@@ -123,6 +123,7 @@ void MyList<T>::excluir2(T dato){
           p_start = p_start->p_next;
         else
           p_ante->p_next = p_temp->p_next;
+        tamanho -=1;
       }
       p_ante = p_temp;
       p_temp = p_temp->p_next;
