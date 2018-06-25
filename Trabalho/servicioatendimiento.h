@@ -30,9 +30,10 @@ class servicioAtendimento
     void recepcionar(Cliente, MyList<Assunto>);
     Atendimento atender();
     void encerrar(Atendimento &atendimento);
-    void gerarEstatística();
+    void gerarEstatistica();
 
     MyList<Assunto> gerarListaAssunto(int);
+    void menu();
 
     inline void mostrarHeapAtenimento(){ heapAtendimento.mostrarHeap(); }
 };
