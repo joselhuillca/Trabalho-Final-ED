@@ -18,6 +18,7 @@ public:
     //~myheap();
 
     void inserir(Atendimento atendimento);
+    void enfilerar(Atendimento atendimento);
     void subir(int posicao);
 
     void trocar(int i, int j);
@@ -25,7 +26,11 @@ public:
     Atendimento excluir();
     void descer(int posicao);
 
+    void setAtendimento(int p, double horaAtendimento);
+    inline int getTamanho(){return tamanho;}
     void mostrarHeap();
+
+    void crearHeap();
 };
 
 void MyHeap::inserir(Atendimento atendimento)
@@ -35,6 +40,17 @@ void MyHeap::inserir(Atendimento atendimento)
     }else{
         lista[tamanho] = atendimento;
         subir(tamanho);
+        tamanho += 1;
+    }
+}
+
+//nós fazemos o "heap" funcionar como uma fileira
+void MyHeap::enfilerar(Atendimento atendimento)
+{
+    if(tamanho >= MAX_SIZE_HEAP){
+        //resizeMyHeap();
+    }else{
+        lista[tamanho] = atendimento;
         tamanho += 1;
     }
 }
@@ -86,10 +102,24 @@ void MyHeap::descer(int posicao)
     }
 }
 
+void MyHeap::setAtendimento(int p, double horaAtendimento)
+{
+    lista[p].setHoraAtendimento(horaAtendimento);
+    lista[p].calcularPrioridade();
+}
+
 void MyHeap::mostrarHeap()
 {
     for(int i=0; i<tamanho; i++){
         cout<<"Cliente: "<<lista[i].getCliente().getNome()<<"  Prioridade: "<<lista[i].getPrioridade()<<endl;
+    }
+}
+
+void MyHeap::crearHeap()
+{
+    int tam_aux = tamanho;
+    for(int i=tam_aux-1; i>=2;i--){
+        subir(i);
     }
 }
 

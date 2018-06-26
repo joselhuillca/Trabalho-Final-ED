@@ -56,9 +56,7 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
         horaInicio += duracaoAtendimento;
         listaEncerrar.inserir(assunto.getTipo().getTipo(), assunto.getDuracaoAtendimento());
     }
-    cout<<"Excluyendo de lista de atendimento";
-    listaAtendimento.excluir(atendimento);
-    cout<<"..."<<endl;
+    cout<<"Terminando de encerrar atendimento..."<<endl;
 }
 
 void servicioAtendimento::gerarEstatistica()
@@ -84,7 +82,7 @@ void servicioAtendimento::recepcionar(Cliente cliente_, MyList<Assunto> listaAss
   time(&tempoAgora);
 
   Atendimento Objeto_Atendimento(cliente_, listaAssunto_, tempoAgora);
-  listaAtendimento.inserir(Objeto_Atendimento);
+  heapAtendimento.enfilerar(Objeto_Atendimento);
 }
 
 MyList<Assunto> servicioAtendimento::gerarListaAssunto(int cantidade)
@@ -104,17 +102,14 @@ Atendimento servicioAtendimento::atender()
 {
   time_t tempoAgora;
   time(&tempoAgora);
-  MyHeap heapTemporal;
-  // Create Heap
-  int tamanhoLista = listaAtendimento.getTamanho();
+  int tamanhoLista = heapAtendimento.getTamanho();
   for(int i=0; i<tamanhoLista; i++){
-    Atendimento Objecto_Atendimento = listaAtendimento.get(i);
-    Objecto_Atendimento.setHoraAtendimento(tempoAgora);
-    Objecto_Atendimento.calcularPrioridade();
-    heapTemporal.inserir(Objecto_Atendimento);
+      heapAtendimento.setAtendimento(i, tempoAgora);
   }
+  heapAtendimento.crearHeap();
+
   // Get max prioridade
-  Atendimento atendimentoAtender = heapTemporal.excluir();
+  Atendimento atendimentoAtender = heapAtendimento.excluir();
   return atendimentoAtender;
 }
 
@@ -133,7 +128,7 @@ void servicioAtendimento::menu()
     cout<<" 2 - Atender e Encerrar"<<endl;
     cout<<" 3 - Gerar Estatistica"<<endl;
     cout<<" 0 - Sair"<<endl;
-    cout<<" Clientes a espera: "<<listaAtendimento.getTamanho()<<endl;
+    cout<<" Clientes a espera: "<< heapAtendimento.getTamanho()<<endl;
     cout<<" Opcao: ";
     cin>>opcao;
     cout<<endl;
@@ -153,7 +148,7 @@ void servicioAtendimento::menu()
     }
     case 2:
     {
-        if(listaAtendimento.getTamanho()==0){
+        if(heapAtendimento.getTamanho() ==0){
             cout<<" Nenhum cliente esperando..."<<endl;
         }else{
             cout<<" |------------------ Atendendo Cliente -----------------|"<<endl;

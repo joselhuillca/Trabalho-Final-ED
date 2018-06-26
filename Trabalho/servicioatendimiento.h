@@ -20,8 +20,7 @@ class servicioAtendimento
   private:
     TipoAssunto *listaTipoAssunto;
     MyHash listaEncerrar;
-    MyList<Atendimento> listaAtendimento;
-    // MyHeap heapAtendimento;
+    MyHeap heapAtendimento;
 
   public:
 
