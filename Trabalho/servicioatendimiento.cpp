@@ -116,7 +116,7 @@ Atendimento servicioAtendimento::atender()
 void servicioAtendimento::menu()
 {
   int opcao;
-  int cpf;
+  double cpf;
   int numeroAssuntos;
   string nome;
 
