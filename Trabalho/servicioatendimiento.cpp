@@ -54,7 +54,7 @@ void servicioAtendimento::encerrar(Atendimento &atendimento)
         cout<<" tempo de Assunto de tipo("<<str2.str()<<"): "<<duracaoAtendimento<<" segundos"<<endl<<endl;
         assunto.setDuracaoAtendimento(duracaoAtendimento);
         horaInicio += duracaoAtendimento;
-        listaEncerrar.inserir(assunto.getTipo().getTipo(), assunto);
+        listaEncerrar.inserir(assunto.getTipo().getTipo(), assunto.getDuracaoAtendimento());
     }
     cout<<"Excluyendo de lista de atendimento";
     listaAtendimento.excluir(atendimento);
@@ -68,8 +68,8 @@ void servicioAtendimento::gerarEstatistica()
         ostringstream str1;
         str1<<i;
         float mediaAtendimento = 0.0;
-        if(!listaEncerrar.get(i).estaVazio()){
-            mediaAtendimento = listaEncerrar.get(i).mediaDuracaoAtendimento();
+        if(!listaEncerrar.estaVazio(i)){
+            mediaAtendimento = listaEncerrar.getMedia(i);
             cout<<" TipoAssunto " + str1.str() + " : "<<mediaAtendimento<< " segundos" <<endl;
         }else{
             cout<<" TipoAssunto " + str1.str() + " : -- " <<endl;
